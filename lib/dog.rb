@@ -28,8 +28,27 @@ class Dog
             DB[:conn].execute(sql, self.name, self.breed)
             @id = DB[:conn].last_insert_row_id
         end
-
         return self
-    #  expected return --->[[1, "Teddy", "cockapoo"]]
     end
+
+    def self.create(hash_of_attributes)
+        #use metaprogramming
+        #create new dog object
+        #use .SAVEmethod to save into database
+        pupper = Dog.new(hash_of_attributes)
+        pupper.save
+        #????????Is the "metaprograming" here just about using...hash keys?
+        #???????? Is there something else here that I'm supposed to do???
+    end
+
+    def self.new_from_db(row)
+        #create instance with attrib's - THINK .NEWFROMARRAY_from_db
+        pupper = Dog.new(id: row[0], name: row[1], breed: row[2])
+    end
+
+    def self.find_by_id(database_id)
+        #return NEWdogOBJECT
+        
+    end
+
 end#<----CLASSend
