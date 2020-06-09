@@ -28,6 +28,8 @@ class Dog
             DB[:conn].execute(sql, self.name, self.breed)
             @id = DB[:conn].last_insert_row_id
         end
+
+        return self
     #  expected return --->[[1, "Teddy", "cockapoo"]]
     end
 end#<----CLASSend
